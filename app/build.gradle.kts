@@ -39,6 +39,7 @@ android {
 
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -67,6 +68,7 @@ dependencies {
     this implement Dependencies.appSwifeRefresh
     this implement Dependencies.appCoil
     this implement Dependencies.appTimber
+    this implement Dependencies.appRobolectric
     //compose
     this needs Dependencies.appCompose
     this implement Dependencies.appNavigation
@@ -87,4 +89,6 @@ dependencies {
     this unitTest Dependencies.appTruth
     this androidTest Dependencies.appTruth
     this needs Dependencies.appMockito
+
+    coreLibraryDesugaring(Dependencies.appDesugar)
 }

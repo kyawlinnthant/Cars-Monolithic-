@@ -15,6 +15,7 @@ object Versions {
     const val navigationHilt = "1.0.0"
     const val navigationCompose = "2.5.3"
     const val timber = "5.0.1"
+    const val desugar = "2.0.2"
 
 
     //retrofit
@@ -41,4 +42,8 @@ object Versions {
 
     //mockito
     const val mockito = "4.8.1"
+
+    //robolectric
+    const val robolectric = "4.8"
+
 }

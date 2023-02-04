@@ -107,6 +107,9 @@ object Dependencies {
     private val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val appTimber get() = timber
 
+    private val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar}"
+    val appDesugar get() = desugar
+
 
     //room
     private val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
@@ -167,4 +170,8 @@ object Dependencies {
             add(androidMockito)
         }
     )
+
+    //robolectric
+    private val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    val appRobolectric get() = robolectric
 }
