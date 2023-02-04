@@ -16,7 +16,7 @@
  - Data storage with [Jetpack DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
  - Concurrency with [Coroutines](https://developer.android.com/kotlin/coroutines)
  - Data streaming with [Kotlin Flows](https://developer.android.com/kotlin/flow)
- - Declarative UI with [JetpackCompose](https://developer.android.com/jetpack/compose)
+ - Declarative UI with [JetpackCompose](https://developer.android.com/jetpack/compose) and [Material3](https://developer.android.com/jetpack/androidx/releases/compose-material3)
  - App Architecture with [Recommended Architecture](https://developer.android.com/topic/architecture)
  - Dependency Injection with [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 
