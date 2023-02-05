@@ -1,12 +1,18 @@
 package com.sevenpeakssoftware.kyawlinnthant.db
 
+import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
+import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
 import com.sevenpeakssoftware.kyawlinnthant.data.db.CarEntity
 import com.sevenpeakssoftware.kyawlinnthant.data.db.CarsDao
 import com.sevenpeakssoftware.kyawlinnthant.data.db.CarsDatabase
+import com.sevenpeakssoftware.kyawlinnthant.data.db.DbModule
+import com.sevenpeakssoftware.kyawlinnthant.data.ds.PrefModule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
@@ -18,20 +24,17 @@ import org.junit.runner.RunWith
 import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
-@HiltAndroidTest
+@SmallTest
 @RunWith(AndroidJUnit4::class)
 class CarsDaoTest {
-    @get:Rule
-    val mainRule = HiltAndroidRule(this)
 
     private lateinit var dao: CarsDao
-
-    @Inject
-    lateinit var db: CarsDatabase
+    private lateinit var db: CarsDatabase
 
     @Before
     fun setup() {
-        mainRule.inject()
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        db = Room.inMemoryDatabaseBuilder(context,CarsDatabase::class.java).allowMainThreadQueries().build()
         dao = db.getCarsDao()
     }
 
