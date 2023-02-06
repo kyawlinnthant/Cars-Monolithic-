@@ -44,7 +44,7 @@ fun FirstTimeErrorView(
 @Composable
 private fun FirstTimeErrorPreview() {
     CarsTheme {
-        Surface(color = MaterialTheme.colorScheme.surface) {
+        Surface {
             FirstTimeErrorView(message = "Can't access internet", onRetry = {})
         }
     }

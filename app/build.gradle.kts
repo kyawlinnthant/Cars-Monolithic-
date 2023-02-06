@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
-    id("com.google.dagger.hilt.android")
     kotlin("android")
     kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 @Suppress("UnstableApiUsage")
@@ -16,6 +16,7 @@ android {
         targetSdk = AppConfig.targetSdk
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "com.sevenpeakssoftware.kyawlinnthant.CarsTestRunner"
         vectorDrawables {
@@ -46,6 +47,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
@@ -68,6 +70,7 @@ dependencies {
     this implement Dependencies.appSwifeRefresh
     this implement Dependencies.appCoil
     this implement Dependencies.appTimber
+    this implement Dependencies.appMultidex
     this implement Dependencies.appRobolectric
     //compose
     this needs Dependencies.appCompose
@@ -91,4 +94,8 @@ dependencies {
     this needs Dependencies.appMockito
 
     coreLibraryDesugaring(Dependencies.appDesugar)
+
+}
+kapt {
+    correctErrorTypes = true
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,9 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.sevenpeakssoftware.kyawlinnthant.BuildConfig
+import com.sevenpeakssoftware.kyawlinnthant.app.theme.CarsTheme
 import com.sevenpeakssoftware.kyawlinnthant.core.DateTimeConverter
 import com.sevenpeakssoftware.kyawlinnthant.domain.model.CarVo
 
@@ -31,6 +34,7 @@ fun HasCarsView(
     listState: LazyListState,
     onItemClicked: (Int) -> Unit
 ) {
+    val context = LocalContext.current
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -43,8 +47,12 @@ fun HasCarsView(
             key = { it.id }
         ) { item ->
             CarItem(
-                car = item,
-                onItemClicked = onItemClicked
+                id = item.id,
+                image = item.image,
+                title = item.title,
+                date = DateTimeConverter.transform(context.is24(), item.publishedDate),
+                ingress = item.ingress,
+                onItemClicked = onItemClicked,
             )
         }
     }
@@ -52,10 +60,14 @@ fun HasCarsView(
 
 @Composable
 private fun CarItem(
-    car: CarVo,
+    id: Int,
+    image: String,
+    title: String,
+    date: String,
+    ingress: String,
     onItemClicked: (Int) -> Unit
 ) {
-    val context = LocalContext.current
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -63,7 +75,7 @@ private fun CarItem(
         contentAlignment = Alignment.BottomCenter
     ) {
         AsyncImage(
-            model = "${BuildConfig.BASE_URL}${car.image}",
+            model = "${BuildConfig.BASE_URL}${image}",
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -83,7 +95,7 @@ private fun CarItem(
                         )
                 )
                 .clickable {
-                    onItemClicked(car.id)
+                    onItemClicked(id)
                 }
         )
         Column(
@@ -92,13 +104,13 @@ private fun CarItem(
                 .padding(all = 12.dp)
         ) {
             Text(
-                text = car.title,
+                text = title,
                 modifier = Modifier.fillMaxWidth(),
                 style = MaterialTheme.typography.headlineSmall,
                 color = Color.White
             )
             Text(
-                text = DateTimeConverter.transform(context.is24(), car.publishedDate),
+                text = date,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 12.dp),
@@ -106,12 +118,29 @@ private fun CarItem(
                 color = Color.Gray
             )
             Text(
-                text = car.ingress,
+                text = ingress,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 12.dp),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Color.White
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CarItemPreview() {
+    CarsTheme {
+        Surface {
+            CarItem(
+                id = 1,
+                image = "",
+                title = "This is title",
+                date = "11:11",
+                ingress = "Description is here",
+                onItemClicked = {}
             )
         }
     }

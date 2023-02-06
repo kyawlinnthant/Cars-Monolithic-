@@ -112,6 +112,11 @@ infix fun DependencyHandler.needs(requirement: Requirement) {
                 add("kaptAndroidTest", dependency)
             }
         }
+        kaptTests?.let {
+            it.forEach { dependency ->
+                add("kaptTest",dependency)
+            }
+        }
 
     }
 }

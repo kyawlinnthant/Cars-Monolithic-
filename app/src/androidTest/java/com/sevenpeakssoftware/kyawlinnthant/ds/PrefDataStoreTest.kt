@@ -2,7 +2,7 @@ package com.sevenpeakssoftware.kyawlinnthant.ds
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.sevenpeakssoftware.kyawlinnthant.data.ds.PrefDataStoreImpl
 import com.sevenpeakssoftware.kyawlinnthant.data.ds.PrefModule
@@ -17,13 +17,12 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import javax.inject.Inject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltAndroidTest
+@SmallTest
 @UninstallModules(PrefModule::class)
-@RunWith(AndroidJUnit4::class)
 class PrefDataStoreTest {
     @get:Rule
     val coroutinesRule = TestCoroutinesRule()
@@ -75,6 +74,4 @@ class PrefDataStoreTest {
         val expected = ds!!.pullThemeColor().first()
         assertThat(expected).isEqualTo(100)
     }
-
-
 }

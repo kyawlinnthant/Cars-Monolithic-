@@ -16,6 +16,7 @@ object Versions {
     const val navigationCompose = "2.5.3"
     const val timber = "5.0.1"
     const val desugar = "2.0.2"
+    const val multidex = "2.0.1"
 
 
     //retrofit
@@ -31,7 +32,7 @@ object Versions {
     const val pref = "1.0.0"
 
     //di
-    const val hilt = "2.44"
+    const val hilt = "2.44.2"
 
     //test
     const val junit = "4.13.2"

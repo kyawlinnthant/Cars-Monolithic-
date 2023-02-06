@@ -6,4 +6,5 @@ data class Requirement(
     val androidTestImplementations: List<String>? = null,
     val debugImplementations: List<String>? = null,
     val kaptAndroidTests: List<String>? = null,
+    val kaptTests : List<String>? = null,
 )
