@@ -29,7 +29,6 @@ android {
             value = "\"https://cars-sevenpeaks.web.app/\""
         )
     }
-
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -47,7 +46,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
+    testOptions {
+        unitTests {
+            androidResources {
+                isIncludeAndroidResources = true
+            }
+        }
+    }
     buildFeatures {
         compose = true
     }
