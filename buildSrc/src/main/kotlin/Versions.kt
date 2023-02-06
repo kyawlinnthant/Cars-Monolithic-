@@ -1,6 +1,6 @@
 object Versions {
     //app level
-    const val gradle = "7.4.0"
+    const val gradle = "7.4.1"
     const val kotlin = "1.7.10"
 
     //libs
@@ -15,7 +15,8 @@ object Versions {
     const val navigationHilt = "1.0.0"
     const val navigationCompose = "2.5.3"
     const val timber = "5.0.1"
-    const val desugar = "2.0.2"
+
+    const val desugar = "1.2.2"
     const val multidex = "2.0.1"
 
 
@@ -45,6 +46,6 @@ object Versions {
     const val mockito = "4.8.1"
 
     //robolectric
-    const val robolectric = "4.8"
+    const val robolectric = "4.9.2"
 
 }
