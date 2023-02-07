@@ -46,13 +46,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    testOptions {
-        unitTests {
-            androidResources {
-                isIncludeAndroidResources = true
-            }
-        }
-    }
     buildFeatures {
         compose = true
     }

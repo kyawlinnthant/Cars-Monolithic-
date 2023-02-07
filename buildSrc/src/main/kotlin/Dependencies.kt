@@ -19,8 +19,7 @@ object Dependencies {
     }
 
     //compose
-    private const val composeActivity =
-        "androidx.activity:activity-compose:${Versions.activityCompose}"
+    private const val composeActivity = "androidx.activity:activity-compose:${Versions.activityCompose}"
     private const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
     private const val composeTooling = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
     private const val composeJunit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
@@ -33,9 +32,6 @@ object Dependencies {
             add(composeUi)
             add(composeTooling)
         },
-        kapts = null,
-        annotationProcessors = null,
-        testImplementations = null,
         androidTestImplementations = arrayListOf<String>().apply {
             add(composeJunit)
         },
@@ -43,7 +39,6 @@ object Dependencies {
             add(composeUiTest)
             add(composeManifestTest)
         },
-        kaptAndroidTests = null,
     )
     private const val material3 = "androidx.compose.material3:material3:${Versions.material3}"
     val appMaterial get() = material3
