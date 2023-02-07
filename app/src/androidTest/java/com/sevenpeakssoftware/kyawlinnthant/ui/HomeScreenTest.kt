@@ -9,11 +9,13 @@ import com.sevenpeakssoftware.kyawlinnthant.presentation.home.HomeUiState
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 import org.robolectric.shadows.ShadowLog
 
-@RunWith(RobolectricTestRunner::class)
+//before adding robolectric, these tests can be run and result as expected ,as usual.
+//I am not sure what is wrong with this. May be dependency conflicting.
+//Currently documentation says that Robolectric supports in compose.
+//I research the issues and they mentioned to update the latest version. but I've tried all 4+ versions
+//In my case, I can't do it right by time ( during code test process )
 class HomeScreenTest {
 
     @get:Rule
