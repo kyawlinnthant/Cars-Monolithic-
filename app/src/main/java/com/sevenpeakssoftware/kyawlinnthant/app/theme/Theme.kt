@@ -1,14 +1,11 @@
 package com.sevenpeakssoftware.kyawlinnthant.app.theme
 
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.sevenpeakssoftware.kyawlinnthant.domain.model.ThemeType
 
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
@@ -77,42 +74,37 @@ private val DarkColors = darkColorScheme(
 
 @Composable
 fun CarsTheme(
-    themePreference: ThemeType = ThemeType.DEFAULT,
-    isDynamicEnabled: Boolean = false,
+    appThemeStatus: AppThemeStatus = AppThemeStatus.Light,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
-    val isDynamicColor = isDynamicEnabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    val isDarkIcon = when (appThemeStatus) {
+        AppThemeStatus.Dark -> true
+        AppThemeStatus.DynamicDark -> true
+        AppThemeStatus.DynamicLight -> false
+        AppThemeStatus.Light -> false
+    }
 
-    val colorScheme = when {
-        isDynamicColor && themePreference == ThemeType.DEFAULT && isSystemInDarkTheme() -> dynamicDarkColorScheme(
-            context
-        )
-        isDynamicColor && themePreference == ThemeType.DEFAULT && !isSystemInDarkTheme() -> dynamicLightColorScheme(
-            context
-        )
-        isDynamicColor && themePreference == ThemeType.DARK -> dynamicDarkColorScheme(context)
-        isDynamicColor && themePreference == ThemeType.LIGHT -> dynamicLightColorScheme(context)
-        themePreference == ThemeType.DEFAULT && isSystemInDarkTheme() -> DarkColors
-        themePreference == ThemeType.DEFAULT && !isSystemInDarkTheme() -> LightColors
-        themePreference == ThemeType.DARK -> DarkColors
-        themePreference == ThemeType.LIGHT -> LightColors
-        else -> LightColors
+
+    val colorScheme = when (appThemeStatus) {
+        AppThemeStatus.Dark -> DarkColors
+        AppThemeStatus.Light -> LightColors
+        AppThemeStatus.DynamicDark -> dynamicDarkColorScheme(context)
+        AppThemeStatus.DynamicLight -> dynamicLightColorScheme(context)
     }
 
     val view = LocalView.current
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = isSystemInDarkTheme()
     if (!view.isInEditMode) {
         SideEffect {
             systemUiController.apply {
                 setStatusBarColor(
                     color = colorScheme.primary,
-                    darkIcons = useDarkIcons,
+                    darkIcons = isDarkIcon,
                 )
                 setNavigationBarColor(
-                    color = colorScheme.surface,
-                    darkIcons = useDarkIcons,
+                    color = colorScheme.primary,
+                    darkIcons = isDarkIcon,
                 )
             }
         }
