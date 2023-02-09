@@ -1,14 +1,16 @@
 object Versions {
     //app level
     const val gradle = "7.4.1"
-    const val kotlin = "1.7.10"
+    const val kotlin = "1.8.10"
 
     //libs
     const val coreKtx = "1.9.0"
+    const val testCoreKtx = "1.5.0"
     const val lifecycleKtx = "2.5.1"
     const val material3 = "1.1.0-alpha04"
     const val activityCompose = "1.6.1"
-    const val compose = "1.3.0"
+    const val compose = "1.3.3"
+    const val composeCompiler = "1.4.2"
     const val splash = "1.0.0"
     const val accomplish = "0.28.0"
     const val coil = "2.2.2"

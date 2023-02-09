@@ -13,30 +13,37 @@ object Dependencies {
     private const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     private const val lifecycleKtx =
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleKtx}"
+    private const val testCore = "androidx.test:core-ktx:${Versions.testCoreKtx}"
     val appDependencies = arrayListOf<String>().apply {
         add(coreKtx)
         add(lifecycleKtx)
+        add(testCore)
     }
 
     //compose
-    private const val composeActivity = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    private const val composeActivity =
+        "androidx.activity:activity-compose:${Versions.activityCompose}"
     private const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
     private const val composeTooling = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
     private const val composeJunit = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
-    private const val composeUiTest = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+    private const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     private const val composeManifestTest =
         "androidx.compose.ui:ui-test-manifest:${Versions.compose}"
+    private const val composeCompiler =
+        "androidx.compose.compiler:compiler:${Versions.composeCompiler}"
+
     val appCompose = Requirement(
         implementations = arrayListOf<String>().apply {
             add(composeActivity)
             add(composeUi)
             add(composeTooling)
+            add(composeCompiler)
         },
         androidTestImplementations = arrayListOf<String>().apply {
             add(composeJunit)
         },
         debugImplementations = arrayListOf<String>().apply {
-            add(composeUiTest)
+            add(composeUiTooling)
             add(composeManifestTest)
         },
     )

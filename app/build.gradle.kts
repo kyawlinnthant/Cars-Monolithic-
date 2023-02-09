@@ -41,6 +41,13 @@ android {
         }
 
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -53,7 +60,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
     packagingOptions {
         resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
@@ -63,6 +70,7 @@ android {
 dependencies {
     testImplementation(project(mapOf("path" to ":test-rule")))
     androidTestImplementation(project(mapOf("path" to ":test-rule")))
+
     //app dependencies
     this implements Dependencies.appDependencies
     this implement Dependencies.appMaterial
@@ -72,7 +80,6 @@ dependencies {
     this implement Dependencies.appCoil
     this implement Dependencies.appTimber
     this implement Dependencies.appMultidex
-    this implement Dependencies.appRobolectric
     //compose
     this needs Dependencies.appCompose
     this implement Dependencies.appNavigation
@@ -89,6 +96,7 @@ dependencies {
     this androidTests Dependencies.appAndroidTest
     //unit test
     this unitTests Dependencies.appUnitTest
+    this unitTest Dependencies.appRobolectric
     //google truth
     this unitTest Dependencies.appTruth
     this androidTest Dependencies.appTruth
